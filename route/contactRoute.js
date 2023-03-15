@@ -1,10 +1,13 @@
-const router = require('express').Router()
-const nodemailer = require('nodemailer')
+const router = require('express').Router();
+const nodemailer = require('nodemailer');
 
 router.post('/contact',(req,res)=>{
     let data = req.body
-    if (data.name.length === 0 || data.email.length === 0 || data.message.length === 0) {
-        return res.json({msg: "Please fill all the fields"})
+    if (data.name.length === 0 || 
+        data.email.length === 0 || 
+        data.message.length === 0
+    ) {
+        return res.json({msg: "Please fill all the fields"});
 
     }
 
@@ -14,7 +17,7 @@ router.post('/contact',(req,res)=>{
             port: 465,
             auth: {
                 user: 'phamela.dillomis@gmail.com',
-                pass: 'gugucjorkwabtnnd'
+                pass: 'gugucjorkwabtnnd',
             }
 
         })
@@ -42,9 +45,9 @@ router.post('/contact',(req,res)=>{
             }catch (error) {
                 if(error) return res.status(500).json({msg: "There is server error"})
             }
-        })
+        });
     
 
 
-})
+});
 module.exports=router
